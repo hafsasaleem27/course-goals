@@ -8,8 +8,8 @@ const CourseInput = (props) => {
         
     };
 
-    const goalInputChangeHandler = () => {
-
+    const goalInputChangeHandler = (event) => {
+        
     };
 
     return (
@@ -18,6 +18,7 @@ const CourseInput = (props) => {
                 <label>Course Goal</label>
                 <input type='text' onChange={goalInputChangeHandler} />
             </div>
+            <Button type='submit'>Add Course Goal</Button>
         </form>
     );
 };

@@ -1,6 +1,11 @@
 import React from "react";
-import './CourseGoalList';
+import CourseGoalItem from "../CourseGoalItem/CourseGoalItem";
+import './CourseGoalList.css';
 
-const CourseGoalList = (props) => {};
+const CourseGoalList = (props) => {
+    return (
+        <CourseGoalItem/>
+    );
+};
 
 export default CourseGoalList;
