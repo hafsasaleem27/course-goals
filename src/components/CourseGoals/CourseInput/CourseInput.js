@@ -39,6 +39,9 @@ const CourseInput = (props) => {
                     onChange={goalInputChangeHandler} 
                     onFocus={focusHandler}
                     value={enteredValue}
+                    style={{ borderColor: isValid ? '#8b005d' : 'red',
+                             backgroundColor: isValid ? 'salmon' : '#fad0ec' 
+                           }}
                 />
                 {!isValid && error}
             </div>
