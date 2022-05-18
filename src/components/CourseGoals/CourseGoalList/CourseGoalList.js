@@ -4,7 +4,17 @@ import './CourseGoalList.css';
 
 const CourseGoalList = (props) => {
     return (
-        <CourseGoalItem/>
+        <ul>
+            {props.items.map(item => (
+                <CourseGoalItem
+                    key={item.id}
+                    id={item.id}
+                    onDelete={props.onDeleteItem}
+                >
+                    {item.text}
+                </CourseGoalItem>
+            ))}
+        </ul>
     );
 };
 
