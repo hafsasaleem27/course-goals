@@ -1,53 +1,78 @@
-import React, { useState } from 'react';
-import Button from '../../UI/Button/Button';
-import './CourseInput.css';
+import React, { useState } from "react";
+import Button from "../../UI/Button/Button";
+import styled from "styled-components";
+import "./CourseInput.css";
+
+const FormControl = styled.div`
+  margin: 0.5rem 0;
+
+  & label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: ${props => (props.invalid ? 'red' : 'black')};
+  }
+
+  & input {
+    display: block;
+    width: 100%;
+    border: 1px solid ${props => (props.invalid ? 'red' : '#ccc')};
+    font: inherit;
+    line-height: 1.5rem;
+    padding: 0 0.25rem;
+    background-color: ${props => (props.invalid ? 'salmon' : 'transparent')};
+  }
+
+  & input:focus {
+    outline: none;
+    background: #fad0ec;
+    border-color: #8b005d;
+  }
+`;
 
 const CourseInput = (props) => {
-    const [enteredValue, setEnteredValue] = useState('');
-    const  [isValid, setIsValid] = useState(true);
-    // const [error, setError] = useState('');
+  const [enteredValue, setEnteredValue] = useState("");
+  const [isValid, setIsValid] = useState(true);
+  // const [error, setError] = useState('');
 
-    const formSubmitHandler = (event) => {
-        event.preventDefault();
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
 
-        if (enteredValue.trim() === '') {
-            setIsValid(false);
-            // setError('Cannot add empty goal!');
-            return;
-        }
+    if (enteredValue.trim() === "") {
+      setIsValid(false);
+      // setError('Cannot add empty goal!');
+      return;
+    }
 
-        props.onAddGoal(enteredValue);
-        setEnteredValue('');
-    };
+    props.onAddGoal(enteredValue);
+    setEnteredValue("");
+  };
 
-    const goalInputChangeHandler = (event) => {
-        setEnteredValue(event.target.value);
-    };
+  const goalInputChangeHandler = (event) => {
+    setEnteredValue(event.target.value);
+  };
 
-    const focusHandler = (event) => {
-        setIsValid(true);
-    };
+  const focusHandler = (event) => {
+    setIsValid(true);
+  };
 
-    let error = <p>Cannot add empty goal!</p>;
+  let error = <p>Cannot add empty goal!</p>;
 
-    return (
-        <form onSubmit={formSubmitHandler}>
-            <div className={`form-control ${isValid ? '' : 'invalid'}`}>
-                <label >Course Goal</label>
-                <input 
-                    type='text' 
-                    onChange={goalInputChangeHandler} 
-                    onFocus={focusHandler}
-                    value={enteredValue}
-                    // style={{ borderColor: isValid ? '#8b005d' : 'red',
-                    //          backgroundColor: isValid ? '#fad0ec' : 'salmon' 
-                    //        }}
-                />
-                {!isValid && error}
-            </div>
-            <Button type='submit'>Add Course Goal</Button>
-        </form>
-    );
+  return (
+    <form onSubmit={formSubmitHandler}>
+      <FormControl invalid={!isValid}>
+        <label>Course Goal</label>
+        <input
+          type="text"
+          onChange={goalInputChangeHandler}
+          onFocus={focusHandler}
+          value={enteredValue}
+        />
+        {!isValid && error}
+      </FormControl>
+      <Button type="submit">Add Course Goal</Button>
+    </form>
+  );
 };
 
 export default CourseInput;
