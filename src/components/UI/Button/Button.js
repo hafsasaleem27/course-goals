@@ -1,6 +1,6 @@
 // import styled from "styled-components";
-import React from 'react';
-import styles from './Button.module.css';
+import React from "react";
+import styles from "./Button.module.css";
 // import "./Button.css";
 
 // const Button = styled.button`
@@ -30,9 +30,11 @@ import styles from './Button.module.css';
 // `;
 
 const Button = (props) => {
-    <button type={props.type} className={styles}>
+  return (
+    <button type={props.type} className={styles.button}>
       {props.children}
     </button>
+  );
 };
 
 export default Button;
