@@ -49,12 +49,16 @@ const CourseInput = (props) => {
   };
 
   const goalInputChangeHandler = (event) => {
+    if (event.target.value.trim() !== '') {
+      setIsValid(true);
+    }
     setEnteredValue(event.target.value);
   };
 
-  const focusHandler = (event) => {
-    setIsValid(true);
-  };
+  // written by me
+  // const focusHandler = (event) => {
+  //   setIsValid(true);
+  // };
 
   let error = <p>Cannot add empty goal!</p>;
 
@@ -65,7 +69,7 @@ const CourseInput = (props) => {
         <input
           type="text"
           onChange={goalInputChangeHandler}
-          onFocus={focusHandler}
+          // onFocus={focusHandler}
           value={enteredValue}
         />
         {!isValid && error}
